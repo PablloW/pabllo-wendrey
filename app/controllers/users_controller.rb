@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     users = User
               .by_company(params[:company_identifier])
               .by_username(search_params[:username])
-    render json: users.all
+    render json: User.where(company_id: params[:company_id]) if params[:company_id].present?
   end
 
   private
